@@ -6,14 +6,14 @@ import {
   deleteListing,
 } from '../controllers/listingController.js';
 
-
-import authMiddleware from '../middleware/authMiddleware.js';
+import { protect } from '../middleware/authMiddleware.js';
+import upload from '../middleware/uploadMiddleware.js';
 
 const router = express.Router();
 
-router.post('/', authMiddleware, createListing);
+router.post('/', protect, upload.array('images', 5), createListing);
 router.get('/', getListings);
 router.get('/:id', getListingById);
-router.delete('/:id', authMiddleware, deleteListing);
+router.delete('/:id', protect, deleteListing);
 
 export default router;

@@ -1,5 +1,5 @@
 import express from 'express';
-import authMiddleware from '../middleware/authMiddleware.js';
+import { protect } from '../middleware/authMiddleware.js';
 import {
   createEvent,
   getEvents,
@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-router.post('/', authMiddleware, createEvent);
+router.post('/', protect, createEvent);
 router.get('/', getEvents);
 router.post('/:id/rsvp', rsvpEvent);
 
