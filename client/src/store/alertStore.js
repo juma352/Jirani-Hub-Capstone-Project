@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import axios from '../lib/axiosInstance'
+import api from '../lib/api'
 
 const useAlertStore = create((set) => ({
   alerts: [],
@@ -9,39 +9,46 @@ const useAlertStore = create((set) => ({
   fetchAlerts: async () => {
     set({ isLoading: true, error: null })
     try {
-      const response = await axios.get('/alerts')
-      set({ alerts: response.data.alerts, isLoading: false })
+      const response = await api.get('/alerts')
+      set({ alerts: response.data.alerts || response.data, isLoading: false })
     } catch (error) {
-      set({ error: error.message, isLoading: false })
+      set({ error: error.response?.data?.message || error.message, isLoading: false })
     }
   },
 
   createAlert: async (alertData) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await axios.post('/alerts', alertData)
-      set((state) => ({ alerts: [response.data.alert, ...state.alerts], isLoading: false }))
+      const response = await api.post('/alerts', alertData)
+      set((state) => ({ 
+        alerts: [response.data.alert || response.data, ...state.alerts], 
+        isLoading: false 
+      }))
       return { success: true }
     } catch (error) {
-      set({ error: error.message, isLoading: false })
-      return { success: false, error: error.message }
+      const errorMessage = error.response?.data?.message || error.message
+      set({ error: errorMessage, isLoading: false })
+      return { success: false, error: errorMessage }
     }
   },
 
   deactivateAlert: async (alertId) => {
     set({ isLoading: true, error: null })
     try {
-      await axios.put(`/alerts/${alertId}/deactivate`)
+      await api.put(`/alerts/${alertId}/deactivate`)
       set((state) => ({
         alerts: state.alerts.filter((alert) => alert._id !== alertId),
         isLoading: false
       }))
       return { success: true }
     } catch (error) {
-      set({ error: error.message, isLoading: false })
-      return { success: false, error: error.message }
+      const errorMessage = error.response?.data?.message || error.message
+      set({ error: errorMessage, isLoading: false })
+      return { success: false, error: errorMessage }
     }
-  }
+  },
+
+  clearError: () => set({ error: null }),
 }))
 
 export default useAlertStore
