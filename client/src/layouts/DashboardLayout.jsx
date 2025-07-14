@@ -17,22 +17,21 @@ import {
   Home
 } from 'lucide-react';
 
-const SidebarLink = ({ to, label }) => {
+const SidebarLink = ({ to, label, icon: Icon }) => {
   const location = useLocation();
   const isActive = location.pathname === to;
 
   return (
     <Link
       to={to}
-      className={`flex items-center space-x-3 px-3 py-2 rounded-lg font-medium transition-all ${
+      className={`flex items-center space-x-3 px-3 py-2 rounded font-medium transition-all ${
         isActive 
-          ? 'bg-primary text-white shadow-sm' 
-          : 'text-gray-700 hover:bg-gray-100 hover:text-primary'
+          ? 'bg-primary text-black shadow-sm' 
+          : 'text-gray-700 hover:bg-gray-200 hover:text-primary'
       }`}
     >
       <Icon className="h-4 w-4" />
       <span>{label}</span>
-      {label}
     </Link>
   );
 };
@@ -40,6 +39,7 @@ const SidebarLink = ({ to, label }) => {
 const DashboardLayout = () => {
   const { user, logout } = useAuthStore();
   const navigate= useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
@@ -49,7 +49,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r shadow-sm hidden md:block">
+      <aside className="w-64 bg-white border-r hidden  md:block">
         <div className="p-6">
           <div className="flex items-center space-x-2 mb-8">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -80,7 +80,6 @@ const DashboardLayout = () => {
             <SidebarLink to="/dashboard/settings" label="Settings" icon={Settings} />
           </nav>
         </div>
-        </nav>
       </aside>
 
       {/* Main Content */}

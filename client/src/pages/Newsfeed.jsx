@@ -24,7 +24,11 @@ import {
   MessageCircle,
   Share,
   Bookmark,
-  TrendingUp
+  TrendingUp,
+  Calendar,
+  Settings,
+  Users,
+  Briefcase
 } from 'lucide-react'
 import { formatDate } from '../lib/utils'
 
