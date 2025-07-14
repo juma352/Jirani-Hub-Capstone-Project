@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -7,6 +8,14 @@ import { Plus, Search, Filter } from 'lucide-react'
 import useListingStore from '../store/listingStore'
 import { formatCurrency, formatDate } from '../lib/utils'
 import CreateListing from './CreateListing'
+=======
+import { Button } from '../components/ui/button'
+import { Input } from '../components/ui/input'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { Plus, Search, Filter } from 'lucide-react'
+import useListingStore from '../store/listingStore'
+import { formatCurrency, formatDate } from '../lib/utils'
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
 const Marketplace = () => {
   const { listings, fetchListings, isLoading } = useListingStore()
@@ -45,7 +54,11 @@ const Marketplace = () => {
           <p className="text-gray-600">Buy and sell with your neighbors</p>
         </div>
         <Button asChild>
+<<<<<<< HEAD
           <Link to="/dashboard/create-listing" className="flex items-center">
+=======
+          <Link to="/marketplace/new">
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
             <Plus className="h-4 w-4 mr-2" />
             Post Listing
           </Link>
@@ -83,9 +96,15 @@ const Marketplace = () => {
               <Filter className="h-12 w-12 mx-auto mb-4 opacity-50" />
               <h3 className="text-lg font-medium mb-2">No listings found</h3>
               <p>Try adjusting your search or filters, or be the first to post a listing!</p>
+<<<<<<< HEAD
                 <Button className="mt-4" asChild>
                 <Link to="">Post First Listing</Link>
                 </Button>
+=======
+              <Button className="mt-4" asChild>
+                <Link to="/marketplace/new">Post First Listing</Link>
+              </Button>
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
             </div>
           </CardContent>
         </Card>

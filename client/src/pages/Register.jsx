@@ -1,10 +1,18 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+<<<<<<< HEAD
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import useAuthStore from '../providers/useAuthStore'
+=======
+import { Button } from '../components/ui/button'
+import { Input } from '../components/ui/input'
+import { Label } from '../components/ui/label'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import useAuthStore from '../store/authStore'
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +28,11 @@ const Register = () => {
     e.preventDefault()
     const result = await register(formData)
     if (result.success) {
+<<<<<<< HEAD
       navigate('/dashboard')
+=======
+      navigate('/')
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
     }
   }
 

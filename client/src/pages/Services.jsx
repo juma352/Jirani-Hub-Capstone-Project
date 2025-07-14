@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 import { useEffect, useState } from 'react'
@@ -9,25 +10,40 @@ import useServiceStore from '../store/serviceStore'
 import { formatCurrency } from '../lib/utils'
 import useChatStore from '../store/chatStore'
 import { useNavigate } from 'react-router-dom'
+=======
+import { useEffect, useState } from 'react'
+import { Button } from '../components/ui/button'
+import { Input } from '../components/ui/input'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { Search, Wrench, Plus } from 'lucide-react'
+import useServiceStore from '../store/serviceStore'
+import { formatCurrency } from '../lib/utils'
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
 const Services = () => {
   const { services, fetchServices, isLoading } = useServiceStore()
   const [searchTerm, setSearchTerm] = useState('')
   const [showAddForm, setShowAddForm] = useState(false)
+<<<<<<< HEAD
   const chatStore = useChatStore()
   const { fetchOrCreateChat } = chatStore
   const navigate = useNavigate()
+=======
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
   useEffect(() => {
     fetchServices()
   }, [fetchServices])
 
+<<<<<<< HEAD
   const handleContactProvider = async (providerId, listingId) => {
     const userId = chatStore.currentUserId // You may need to get current user ID from auth store or context
     await fetchOrCreateChat(listingId, [userId, providerId])
     navigate('/chat') // Adjust route as per your chat UI
   }
 
+=======
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
   const filteredServices = services.filter(service =>
     service.serviceName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     service.description?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -110,10 +126,14 @@ const Services = () => {
                   </div>
                 </div>
 
+<<<<<<< HEAD
                 <Button
                   className="w-full"
                   onClick={() => handleContactProvider(service.user._id, service._id)}
                 >
+=======
+                <Button className="w-full">
+>>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
                   Contact Provider
                 </Button>
               </CardContent>
