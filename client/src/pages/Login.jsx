@@ -1,18 +1,10 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-<<<<<<< HEAD
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import useAuthStore from '../providers/useAuthStore'
-=======
-import { Button } from '../components/ui/button'
-import { Input } from '../components/ui/input'
-import { Label } from '../components/ui/label'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import useAuthStore from '../store/authStore'
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -22,25 +14,20 @@ const Login = () => {
   const { login, isLoading, error } = useAuthStore()
   const navigate = useNavigate()
 
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-<<<<<<< HEAD
     const result = await login({ email: formData.email, password: formData.password })
     if (result.success) {
       navigate('/dashboard')
-=======
-    const result = await login(formData.email, formData.password)
-    if (result.success) {
-      navigate('/')
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
     }
-  }
-
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
   }
 
   return (

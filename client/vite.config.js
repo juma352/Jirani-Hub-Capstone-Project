@@ -1,25 +1,20 @@
 import { defineConfig } from 'vite'
-<<<<<<< HEAD
+import { fileURLToPath } from 'url'
 import path from "path"
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),
-            tailwindcss()
+  plugins: [
+    react(),
+    tailwindcss()
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  
-=======
-import react from '@vitejs/plugin-react'
-
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 })

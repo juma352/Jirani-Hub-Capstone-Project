@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Removed unsupported @custom-variant at-rule */
 
-@theme inline {
+:root {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -109,7 +109,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-=======
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -159,18 +159,14 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 94.1%;
   }
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 }
 
 @layer base {
   * {
-<<<<<<< HEAD
-    @apply border-border outline-ring/50;
-=======
-    @apply border-border;
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
+    border-color: var(--border);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }

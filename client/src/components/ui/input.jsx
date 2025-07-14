@@ -1,13 +1,7 @@
-import * as React from "react"
-<<<<<<< HEAD
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-
-function Input({
-  className,
-  type,
-  ...props
-}) {
+const Input = React.forwardRef(({ className, type, ...props }, ref) => {
   return (
     <input
       type={type}
@@ -18,28 +12,11 @@ function Input({
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         className
       )}
-      {...props} />
-  );
-}
-
-export { Input }
-=======
-import { cn } from "../../lib/utils"
-
-const Input = React.forwardRef(({ className, type, ...props }, ref) => {
-  return (
-    <input
-      type={type}
-      className={cn(
-        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
       ref={ref}
       {...props}
     />
-  )
-})
-Input.displayName = "Input"
+  );
+});
+Input.displayName = "Input";
 
-export { Input }
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
+export { Input };

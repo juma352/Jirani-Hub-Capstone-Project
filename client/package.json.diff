@@ -1,11 +1,4 @@
-{
-  "name": "client",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+<<<<<<< HEAD
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -27,6 +20,23 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11",
     "zustand": "^5.0.6"
+=======
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.28.0",
+    "zustand": "^5.0.2",
+    "lucide-react": "^0.468.0",
+    "axios": "^1.7.9",
+    "clsx": "^2.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-label": "^2.1.1",
+    "tailwind-merge": "^2.6.0",
+    "class-variance-authority": "^0.7.1"
+>>>>>>> REPLACE
+=======
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
@@ -37,7 +47,10 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+<<<<<<< HEAD
     "tw-animate-css": "^1.3.5",
+=======
+>>>>>>> REPLACE
     "vite": "^7.0.3"
   }
 }

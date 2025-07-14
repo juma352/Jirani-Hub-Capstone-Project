@@ -1,18 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-<<<<<<< HEAD
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-=======
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Label } from '../components/ui/label'
 import { Textarea } from '../components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
+
 import useListingStore from '../store/listingStore'
 
 const CreateListing = () => {
@@ -20,12 +13,8 @@ const CreateListing = () => {
     title: '',
     category: '',
     description: '',
-<<<<<<< HEAD
     price: '',
     images: []
-=======
-    price: ''
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
   })
   const { createListing, isLoading, error } = useListingStore()
   const navigate = useNavigate()
@@ -34,7 +23,6 @@ const CreateListing = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-<<<<<<< HEAD
     const formPayload = new FormData()
     formPayload.append('title', formData.title)
     formPayload.append('category', formData.category)
@@ -46,15 +34,7 @@ const CreateListing = () => {
 
     const result = await createListing(formPayload)
     if (result.success) {
-      navigate('/dashboard/listings')
-=======
-    const result = await createListing({
-      ...formData,
-      price: parseFloat(formData.price)
-    })
-    if (result.success) {
       navigate('/marketplace')
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
     }
   }
 
@@ -65,7 +45,6 @@ const CreateListing = () => {
     }))
   }
 
-<<<<<<< HEAD
   const handleImageChange = (e) => {
     setFormData(prev => ({
       ...prev,
@@ -73,8 +52,6 @@ const CreateListing = () => {
     }))
   }
 
-=======
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
   return (
     <div className="max-w-2xl mx-auto">
       <Card>
@@ -85,11 +62,7 @@ const CreateListing = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-<<<<<<< HEAD
           <form onSubmit={handleSubmit} className="space-y-6" encType="multipart/form-data">
-=======
-          <form onSubmit={handleSubmit} className="space-y-6">
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
                 {error}
@@ -154,7 +127,6 @@ const CreateListing = () => {
               />
             </div>
 
-<<<<<<< HEAD
             <div className="space-y-2">
               <Label htmlFor="images">Images</Label>
               <Input
@@ -167,17 +139,13 @@ const CreateListing = () => {
               />
             </div>
 
-=======
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
             <div className="flex gap-4">
               <Button
                 type="button"
                 variant="outline"
-<<<<<<< HEAD
-                onClick={() => navigate('/dashboard/listings')}
-=======
+
                 onClick={() => navigate('/marketplace')}
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
+
                 className="flex-1"
               >
                 Cancel
@@ -193,8 +161,4 @@ const CreateListing = () => {
   )
 }
 
-<<<<<<< HEAD
 export default CreateListing
-=======
-export default CreateListing
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb

@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-<<<<<<< HEAD
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-=======
-import { Button } from '../components/ui/button'
-import { Input } from '../components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 import { Plus, Search, Calendar, MapPin, Users } from 'lucide-react'
 import useEventStore from '../store/eventStore'
 import { formatDate } from '../lib/utils'

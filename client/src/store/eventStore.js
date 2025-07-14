@@ -1,46 +1,12 @@
 import { create } from 'zustand'
-<<<<<<< HEAD
-import axios from '../lib/axiosInstance'
-
-const useEventStore = create((set) => ({
-=======
 import api from '../lib/api'
 
-const useEventStore = create((set, get) => ({
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
+const useEventStore = create((set) => ({
   events: [],
   isLoading: false,
   error: null,
 
   fetchEvents: async () => {
-<<<<<<< HEAD
-    set({ isLoading: true, error: null });
-    try {
-      const response = await axios.get('/events');
-      set({ events: response.data, isLoading: false });
-    } catch (error) {
-      set({ error: error.response?.data?.message || error.message, isLoading: false });
-    }
-  },
-
-  createEvent: async (newEvent) => {
-    set({ isLoading: true, error: null })
-    try {
-      const response = await axios.post('/events', newEvent);
-      set((state) => ({
-        events: [...state.events, response.data],
-        isLoading: false
-      }))
-      return { success: true }
-    } catch (error) {
-      set({ error: error.response?.data?.message || error.message, isLoading: false })
-      return { success: false }
-    }
-  }
-}))
-
-export default useEventStore
-=======
     set({ isLoading: true, error: null })
     try {
       const response = await api.get('/events')
@@ -89,4 +55,3 @@ export default useEventStore
 }))
 
 export default useEventStore
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb

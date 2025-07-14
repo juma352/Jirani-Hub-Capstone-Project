@@ -9,7 +9,6 @@ import CreateListing from './pages/CreateListing'
 import Events from './pages/Events'
 import CreateEvent from './pages/CreateEvent'
 import Services from './pages/Services'
-<<<<<<< HEAD
 import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './pages/Dashboard'
 import Chat from './pages/Chat'
@@ -20,9 +19,6 @@ import MemberDirectory from './pages/MemberDirectory'
 import AlertSystem from './pages/AlertSystem'
 import Newsfeed from './pages/Newsfeed'
 import ErrorBoundary from './layouts/ErrorBoundary'
-=======
-import useAuthStore from './store/authStore'
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthStore()
@@ -31,25 +27,16 @@ const ProtectedRoute = ({ children }) => {
 
 const PublicRoute = ({ children }) => {
   const { user } = useAuthStore()
-<<<<<<< HEAD
   return !user ? children : <Navigate to="/dashboard" />
 }
 
 function App() {
   const { checkAuth, loading, user } = useAuthStore()
-=======
-  return !user ? children : <Navigate to="/" />
-}
-
-function App() {
-  const { checkAuth } = useAuthStore()
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
 
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
 
-<<<<<<< HEAD
   if (loading) {
     return <div>Loading...</div>
   }
@@ -101,70 +88,3 @@ function App() {
 
 export default App
 
-=======
-  return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        } />
-        <Route path="/register" element={
-          <PublicRoute>
-            <Register />
-          </PublicRoute>
-        } />
-        
-        <Route path="/" element={
-          <Layout>
-            <Home />
-          </Layout>
-        } />
-        
-        <Route path="/marketplace" element={
-          <ProtectedRoute>
-            <Layout>
-              <Marketplace />
-            </Layout>
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/marketplace/new" element={
-          <ProtectedRoute>
-            <Layout>
-              <CreateListing />
-            </Layout>
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/events" element={
-          <ProtectedRoute>
-            <Layout>
-              <Events />
-            </Layout>
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/events/new" element={
-          <ProtectedRoute>
-            <Layout>
-              <CreateEvent />
-            </Layout>
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/services" element={
-          <ProtectedRoute>
-            <Layout>
-              <Services />
-            </Layout>
-          </ProtectedRoute>
-        } />
-      </Routes>
-    </Router>
-  )
-}
-
-export default App
->>>>>>> 1a8dccf6301d4f2a20e219037a19ad689ba280eb
