@@ -18,6 +18,7 @@ import EditListing from './pages/EditListing'
 import MemberDirectory from './pages/MemberDirectory'
 import AlertSystem from './pages/AlertSystem'
 import Newsfeed from './pages/Newsfeed'
+import Settings from './pages/Settings'
 import ErrorBoundary from './layouts/ErrorBoundary'
 
 const ProtectedRoute = ({ children }) => {
@@ -69,6 +70,7 @@ function App() {
             <Route path="members" element={<MemberDirectory />} />
             <Route path="alerts" element={<AlertSystem />} />
             <Route path="announcements" element={<Newsfeed />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="edit-listing/:id" element={<EditListing />} />
           </Route>
           <Route path="/events/new" element={
