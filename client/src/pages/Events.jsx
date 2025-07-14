@@ -43,7 +43,7 @@ const Events = () => {
           <p className="text-gray-600">Discover and join local events</p>
         </div>
         <Button asChild>
-          <Link to="/events/new">
+          <Link to="/dashboard/events/new">
             <Plus className="h-4 w-4 mr-2" />
             Create Event
           </Link>
@@ -68,7 +68,7 @@ const Events = () => {
               <h3 className="text-lg font-medium mb-2">No events found</h3>
               <p>Be the first to create an event in your community!</p>
               <Button className="mt-4" asChild>
-                <Link to="/events/new">Create First Event</Link>
+                <Link to="/dashboard/events/new">Create First Event</Link>
               </Button>
             </div>
           </CardContent>

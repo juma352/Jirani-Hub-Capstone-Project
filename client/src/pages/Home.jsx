@@ -112,10 +112,10 @@ const Home = () => {
           </div>
           <div className="flex space-x-4">
             <Button asChild>
-              <Link to="/marketplace/new">Post Listing</Link>
+              <Link to="/dashboard/create-listing">Post Listing</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link to="/events/new">Create Event</Link>
+              <Link to="/dashboard/events/new">Create Event</Link>
             </Button>
           </div>
         </div>
@@ -132,7 +132,7 @@ const Home = () => {
               <CardDescription>Latest items in your neighborhood</CardDescription>
             </div>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/marketplace">View All</Link>
+              <Link to="/dashboard/listings">View All</Link>
             </Button>
           </CardHeader>
           <CardContent>
@@ -171,7 +171,7 @@ const Home = () => {
               <CardDescription>Don't miss out on community events</CardDescription>
             </div>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/events">View All</Link>
+              <Link to="/dashboard/events">View All</Link>
             </Button>
           </CardHeader>
           <CardContent>

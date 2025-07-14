@@ -113,7 +113,6 @@ const Register = () => {
             </div>
           </form>
         </CardContent>
-      </Card>
     </div>
   )
 }

@@ -34,7 +34,7 @@ const CreateListing = () => {
 
     const result = await createListing(formPayload)
     if (result.success) {
-      navigate('/marketplace')
+      navigate('/dashboard/listings')
     }
   }
 
@@ -144,7 +144,7 @@ const CreateListing = () => {
                 type="button"
                 variant="outline"
 
-                onClick={() => navigate('/marketplace')}
+                onClick={() => navigate('/dashboard/listings')}
 
                 className="flex-1"
               >

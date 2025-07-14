@@ -44,7 +44,7 @@ const Marketplace = () => {
           <p className="text-gray-600">Buy and sell with your neighbors</p>
         </div>
         <Button asChild>
-          <Link to="/marketplace/new">
+          <Link to="/dashboard/create-listing">
             <Plus className="h-4 w-4 mr-2" />
             Post Listing
           </Link>
@@ -83,7 +83,7 @@ const Marketplace = () => {
               <h3 className="text-lg font-medium mb-2">No listings found</h3>
               <p>Try adjusting your search or filters, or be the first to post a listing!</p>
               <Button className="mt-4" asChild>
-                <Link to="/marketplace/new">Post First Listing</Link>
+                <Link to="/dashboard/create-listing">Post First Listing</Link>
               </Button>
             </div>
           </CardContent>

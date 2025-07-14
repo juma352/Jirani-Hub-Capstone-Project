@@ -43,6 +43,24 @@ const useListingStore = create((set, get) => ({
     }
   },
 
+  updateListing: async (id, listingData) => {
+    set({ isLoading: true, error: null })
+    try {
+      const response = await api.put(`/listings/${id}`, listingData)
+      set(state => ({
+        listings: state.listings.map(listing => 
+          listing._id === id ? response.data : listing
+        ),
+        isLoading: false
+      }))
+      return { success: true, data: response.data }
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Failed to update listing'
+      set({ error: errorMessage, isLoading: false })
+      return { success: false, error: errorMessage }
+    }
+  },
+
   deleteListing: async (id) => {
     try {
       await api.delete(`/listings/${id}`)

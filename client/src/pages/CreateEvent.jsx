@@ -99,7 +99,7 @@ const CreateEvent = () => {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => navigate('/events')}
+                onClick={() => navigate('/dashboard/events')}
                 className="flex-1"
               >
                 Cancel
