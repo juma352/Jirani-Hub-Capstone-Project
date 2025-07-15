@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import useChatStore from '../store/chatStore'
 import useAuthStore from '../providers/useAuthStore'
 
 const Chat = () => {
   const { user } = useAuthStore()
+  const { userId } = useParams()
   const {
     currentChat,
     messages,
@@ -17,16 +19,16 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState('')
   const [chatInitialized, setChatInitialized] = useState(false)
 
-  // For demo, use a fixed listingId and participants including current user
+  // For demo, use a fixed listingId and participants including current user and chat partner
   const listingId = 'demo-listing-id'
-  const participantIds = user ? [user._id] : []
+  const participantIds = user ? [user._id, userId] : []
 
   useEffect(() => {
-    if (user && !chatInitialized) {
+    if (user && userId && !chatInitialized) {
       fetchOrCreateChat(listingId, participantIds)
       setChatInitialized(true)
     }
-  }, [user, chatInitialized, fetchOrCreateChat, listingId, participantIds])
+  }, [user, userId, chatInitialized, fetchOrCreateChat, listingId, participantIds])
 
   useEffect(() => {
     if (currentChat) {

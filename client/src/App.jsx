@@ -66,10 +66,13 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="events" element={<Events />} />
             <Route path="create-listing" element={<CreateListing />} />
-            <Route path="events/new" element={<CreateEvent />} />
+            {['admin', 'moderator'].includes(user?.role) && (
+              <Route path="events/new" element={<CreateEvent />} />
+            )}
             <Route path="members" element={<MemberDirectory />} />
+            {['admin', 'moderator'].includes(user?.role) && null}
             <Route path="alerts" element={<AlertSystem />} />
-            <Route path="announcements" element={<Newsfeed />} />
+                <Route path="announcements" element={<Newsfeed />} />
             <Route path="settings" element={<Settings />} />
             <Route path="edit-listing/:id" element={<EditListing />} />
           </Route>
@@ -80,6 +83,9 @@ function App() {
             user ? <ListingDetail /> : <Navigate to="/login" />
           } />
           <Route path="/chat" element={
+            user ? <Chat /> : <Navigate to="/login" />
+          } />
+          <Route path="/chat/:userId" element={
             user ? <Chat /> : <Navigate to="/login" />
           } />
         </Routes>

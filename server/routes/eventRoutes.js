@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.post('/', protect, createEvent);
 router.get('/', getEvents);
-router.post('/:id/rsvp', rsvpEvent);
+router.post('/:id/rsvp', protect, rsvpEvent);
 
 export default router;

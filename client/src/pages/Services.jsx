@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
@@ -14,10 +15,12 @@ const Services = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [showAddForm, setShowAddForm] = useState(false)
 
+  const navigate = useNavigate()
+
   // Add this function to handle contacting the provider
   const handleContactProvider = (userId, serviceId) => {
-    // You can implement navigation, modal, or messaging logic here
-    alert(`Contacting provider with user ID: ${userId} for service ID: ${serviceId}`)
+    // Navigate to chat page with provider user ID
+    navigate(`/chat/${userId}`)
   }
 
 

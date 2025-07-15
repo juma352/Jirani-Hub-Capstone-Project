@@ -115,7 +115,7 @@ const AlertSystem = () => {
                 Create Alert
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl bg-white shadow-lg rounded-lg p-6">
               <DialogHeader>
                 <DialogTitle>Create Community Alert</DialogTitle>
                 <DialogDescription>

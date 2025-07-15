@@ -209,11 +209,13 @@ const Dashboard = () => {
 
         <TabsContent value="listings" className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">My Listings</h2>
+          <h2 className="text-2xl font-bold">My Listings</h2>
+          {['admin', 'moderator'].includes(user?.role) && (
             <Button asChild>
               <Link to="/dashboard/create-listing">Create New Listing</Link>
             </Button>
-          </div>
+          )}
+        </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {userListings.map((listing) => (
@@ -258,11 +260,13 @@ const Dashboard = () => {
 
         <TabsContent value="events" className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">My Events</h2>
+          <h2 className="text-2xl font-bold">My Events</h2>
+          {['admin', 'moderator'].includes(user?.role) && (
             <Button asChild>
               <Link to="/dashboard/events/new">Create New Event</Link>
             </Button>
-          </div>
+          )}
+        </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {userEvents.map((event) => (

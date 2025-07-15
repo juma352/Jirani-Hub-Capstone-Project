@@ -26,6 +26,7 @@ const Login = () => {
     e.preventDefault()
     const result = await login({ email: formData.email, password: formData.password })
     if (result.success) {
+      // Optionally, you can check user role here and redirect accordingly
       navigate('/dashboard')
     }
   }

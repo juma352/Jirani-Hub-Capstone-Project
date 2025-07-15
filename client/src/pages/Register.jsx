@@ -11,7 +11,8 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    location: ''
+    location: '',
+    role: 'resident'
   })
   const { register, isLoading, error } = useAuthStore()
   const navigate = useNavigate()
@@ -21,7 +22,6 @@ const Register = () => {
     const result = await register(formData)
     if (result.success) {
       navigate('/dashboard')
-      navigate('/')
     }
   }
 
@@ -86,6 +86,22 @@ const Register = () => {
                 required
                 placeholder="e.g., Westlands, Nairobi"
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="role">Role</Label>
+              <select
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                required
+              >
+                <option value="resident">Resident</option>
+                <option value="moderator">Moderator</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
             
             <div className="space-y-2">

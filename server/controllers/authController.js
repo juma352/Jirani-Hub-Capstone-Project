@@ -8,7 +8,7 @@ export const registerUser = async (req, res) => {
   if (!req.body) {
     return res.status(400).json({ message: 'Request body is missing' });
   }
-  const { name, email, password, location } = req.body;
+  const { name, email, password, location, role } = req.body;
   try {
     const userExists = await User.findOne({ email });
     if (userExists) return res.status(400).json({ message: 'User already exists' });
@@ -16,12 +16,13 @@ export const registerUser = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
-    const user = await User.create({ name, email, passwordHash, location });
+    const user = await User.create({ name, email, passwordHash, location, role });
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
+      role: user.role,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -38,6 +39,7 @@ export const loginUser = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
         token: generateToken(user._id),
       });
     } else {

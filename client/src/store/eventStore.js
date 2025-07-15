@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import api from '../lib/api'
+import useAuthStore from './authStore'
 
 const useEventStore = create((set) => ({
   events: [],
@@ -10,7 +11,12 @@ const useEventStore = create((set) => ({
     set({ isLoading: true, error: null })
     try {
       const response = await api.get('/events')
-      set({ events: response.data, isLoading: false })
+      const currentUser = useAuthStore.getState().user
+      const eventsWithRSVP = response.data.map(event => ({
+        ...event,
+        hasRSVP: event.attendees.some(attendee => attendee === currentUser?._id)
+      }))
+      set({ events: eventsWithRSVP, isLoading: false })
     } catch (error) {
       set({ error: error.response?.data?.message || 'Failed to fetch events', isLoading: false })
     }

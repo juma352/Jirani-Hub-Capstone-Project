@@ -71,8 +71,10 @@ const DashboardLayout = () => {
               Community
             </div>
             <SidebarLink to="/dashboard/members" label="Members" icon={Users} />
-            <SidebarLink to="/dashboard/alerts" label="Alerts" icon={Bell} />
-            <SidebarLink to="/dashboard/announcements" label="News" icon={MessageSquare} />
+            <>
+              <SidebarLink to="/dashboard/alerts" label="Alerts" icon={Bell} />
+              <SidebarLink to="/dashboard/announcements" label="News" icon={MessageSquare} />
+            </>
             
             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 mt-6">
               Account
