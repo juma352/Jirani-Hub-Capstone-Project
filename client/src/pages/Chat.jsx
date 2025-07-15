@@ -20,7 +20,7 @@ const Chat = () => {
   const [chatInitialized, setChatInitialized] = useState(false)
 
   // For demo, use a fixed listingId and participants including current user and chat partner
-  const listingId = 'demo-listing-id'
+  const listingId = null
   const participantIds = user ? [user._id, userId] : []
 
   useEffect(() => {
@@ -44,27 +44,47 @@ const Chat = () => {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: 20 }}>
-      <h1>Chat</h1>
+    <div className="max-w-2xl mx-auto p-4 flex flex-col h-[80vh]">
+      <header className="flex items-center justify-between border-b border-gray-300 pb-3 mb-3">
+        <h2 className="text-xl font-semibold">
+          Chat with {userId || 'Unknown'}
+        </h2>
+      </header>
+
       {isLoading && <p>Loading...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div style={{ border: '1px solid #ccc', padding: 10, minHeight: 300, overflowY: 'auto' }}>
-        {messages.length === 0 && <p>No messages yet.</p>}
-        {messages.map((msg, index) => (
-          <div key={index} style={{ marginBottom: 10 }}>
-            <strong>{msg.sender?.name || 'Unknown'}:</strong> {msg.message}
-          </div>
-        ))}
+      {error && <p className="text-red-600">{error}</p>}
+
+      <div className="flex-1 overflow-y-auto border border-gray-300 rounded-md p-4 space-y-4 mb-4">
+        {messages.length === 0 && <p className="text-center text-gray-500">No messages yet.</p>}
+        {messages.map((msg, index) => {
+          const isCurrentUser = msg.sender?._id === user._id
+          return (
+            <div
+              key={index}
+              className={`flex ${isCurrentUser ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`max-w-[70%] px-4 py-2 rounded-lg ${isCurrentUser ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-900'}`}>
+                <p className="text-sm">{msg.message}</p>
+                <p className="text-xs mt-1 text-gray-400">{msg.sender?.name || 'Unknown'}</p>
+              </div>
+            </div>
+          )
+        })}
       </div>
-      <div style={{ marginTop: 10 }}>
+
+      <div className="flex space-x-2">
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type your message..."
-          style={{ width: '80%', padding: 8 }}
+          className="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button onClick={handleSendMessage} style={{ padding: '8px 16px', marginLeft: 8 }}>
+        <button
+          onClick={handleSendMessage}
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
+          disabled={!newMessage.trim()}
+        >
           Send
         </button>
       </div>

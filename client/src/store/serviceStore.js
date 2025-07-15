@@ -19,7 +19,7 @@ const useServiceStore = create((set) => ({
             description: 'Fix leaks and pipes',
             ratePerHour: 1500,
             availability: 'Weekdays',
-            user: { _id: 'u1', name: 'John Doe', location: 'Nairobi' }
+            user: { _id: '687533eb0062828eaa50d36a', name: 'John Doe', location: 'Nairobi' }
           },
           {
             _id: '2',
@@ -27,7 +27,7 @@ const useServiceStore = create((set) => ({
             description: 'Math and Science tutoring',
             ratePerHour: 1200,
             availability: 'Weekends',
-            user: { _id: 'u2', name: 'Jane Smith', location: 'Mombasa' }
+            user: { _id: '687533eb0062828eaa50d36b', name: 'Jane Smith', location: 'Mombasa' }
           }
         ]), 1000)
       )

@@ -33,7 +33,7 @@ const ListingDetail = () => {
     const result = await placeOrder({ listing: listing._id, quantity, totalPrice });
     if (result.success) {
       alert('Order placed successfully!');
-      navigate('/marketplace');
+      navigate(`/checkout/${result.order._id}`);
     } else {
       alert('Failed to place order: ' + result.error);
     }

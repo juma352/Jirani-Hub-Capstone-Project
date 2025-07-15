@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const chatSchema = new mongoose.Schema({
-  listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', required: true },
+  listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', required: false },
   participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   messages: [{
     sender: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

@@ -20,6 +20,7 @@ import AlertSystem from './pages/AlertSystem'
 import Newsfeed from './pages/Newsfeed'
 import Settings from './pages/Settings'
 import ErrorBoundary from './layouts/ErrorBoundary'
+import Checkout from './pages/Checkout'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthStore()
@@ -76,6 +77,9 @@ function App() {
             <Route path="settings" element={<Settings />} />
             <Route path="edit-listing/:id" element={<EditListing />} />
           </Route>
+          <Route path="/marketplace" element={
+            user ? <Marketplace /> : <Navigate to="/login" />
+          } />
           <Route path="/events/new" element={
             user ? <CreateEvent /> : <Navigate to="/login" />
           } />
@@ -87,6 +91,9 @@ function App() {
           } />
           <Route path="/chat/:userId" element={
             user ? <Chat /> : <Navigate to="/login" />
+          } />
+          <Route path="/checkout/:orderId" element={
+            user ? <Checkout /> : <Navigate to="/login" />
           } />
         </Routes>
       </Router>

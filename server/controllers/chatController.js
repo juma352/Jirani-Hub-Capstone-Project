@@ -3,24 +3,40 @@ import Chat from '../models/Chat.js';
 // Create or get chat for a listing and participants
 export const getOrCreateChat = async (req, res) => {
   try {
+    console.log('getOrCreateChat request body:', req.body);
     const { listingId, participantIds } = req.body;
 
-    let chat = await Chat.findOne({
-      listing: listingId,
+    if (!participantIds || !Array.isArray(participantIds) || participantIds.length === 0) {
+      return res.status(400).json({ success: false, error: 'participantIds must be a non-empty array' });
+    }
+
+    let query = {
       participants: { $all: participantIds, $size: participantIds.length }
-    });
+    };
+
+    if (listingId) {
+      query.listing = listingId;
+    }
+
+    console.log('getOrCreateChat query:', query);
+
+    let chat = await Chat.findOne(query);
 
     if (!chat) {
-      chat = new Chat({
-        listing: listingId,
+      const chatData = {
         participants: participantIds,
         messages: []
-      });
+      };
+      if (listingId) {
+        chatData.listing = listingId;
+      }
+      chat = new Chat(chatData);
       await chat.save();
     }
 
     res.status(200).json({ success: true, chat });
   } catch (error) {
+    console.error('Error in getOrCreateChat:', error);
     res.status(500).json({ success: false, error: error.message });
   }
 };
