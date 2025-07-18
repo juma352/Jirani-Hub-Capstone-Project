@@ -89,12 +89,16 @@ const ListingDetail = () => {
           </div>
         </div>
       </div>
+    );
+  }
+
+  const getImageUrl = (imagePath) => {
     const baseURL = import.meta.env.VITE_API_URL?.replace('/api', '') || 
                    (import.meta.env.PROD 
                      ? 'https://your-render-app-name.onrender.com'
-                     : 'http://localhost:5000')
-    return `${baseURL}/${imagePath.replace(/\\/g, '/')}`
-  }
+                     : 'http://localhost:5000');
+    return `${baseURL}/${imagePath.replace(/\\/g, '/')}`;
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
@@ -305,7 +309,7 @@ const ListingDetail = () => {
                         alt={relatedListing.title}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          e.target.src = 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400'
+                          e.target.src = 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400';
                         }}
                       />
                     ) : (
