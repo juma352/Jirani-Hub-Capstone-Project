@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import cors from 'cors'
+import corsMiddleware from './middleware/corsMiddleware.js'
 import connectDB from './config/Db.js'
 import authRoutes from './routes/authRoutes.js'
 import listingRoutes from './routes/listingRoutes.js'
@@ -31,15 +31,8 @@ app.use(express.json())
 // Serve uploads folder statically
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
-// Implement CORS middleware with options
-app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['https://jirani-hub.vercel.app', 'https://your-custom-domain.com']
-        : 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}))
+// Apply CORS middleware
+app.use(corsMiddleware)
 
 //Mount routes
 app.use('/api/auth', authRoutes)
@@ -67,9 +60,14 @@ const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://jirani-hub.vercel.app', 'https://your-custom-domain.com']
-        : 'http://localhost:5173',
-    methods: ['GET', 'POST'],
+        ? [
+            'https://jirani-hub-capstone-project.vercel.app',
+            'https://jirani-hub-frontend.vercel.app', 
+            'https://jirani-hub.vercel.app',
+            /\.vercel\.app$/
+          ]
+        : ['http://localhost:5173', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
   }
 })

@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || (
   import.meta.env.PROD 
-    ? 'https://your-render-app-name.onrender.com'
+    ? 'https://jirani-hub-capstone-project.onrender.com'
     : 'http://localhost:5000'
 );
 

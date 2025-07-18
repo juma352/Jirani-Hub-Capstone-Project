@@ -11,7 +11,26 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "https://your-render-app-name.onrender.com/api",
-    "VITE_SOCKET_URL": "https://your-render-app-name.onrender.com"
-  }
+    "VITE_API_URL": "https://jirani-hub-capstone-project.onrender.com/api",
+    "VITE_SOCKET_URL": "https://jirani-hub-capstone-project.onrender.com"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
 }

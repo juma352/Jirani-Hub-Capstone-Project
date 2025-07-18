@@ -95,7 +95,7 @@ const ListingDetail = () => {
   const getImageUrl = (imagePath) => {
     const baseURL = import.meta.env.VITE_API_URL?.replace('/api', '') || 
                    (import.meta.env.PROD 
-                     ? 'https://your-render-app-name.onrender.com'
+                     ? 'https://jirani-hub-capstone-project.onrender.com'
                      : 'http://localhost:5000');
     return `${baseURL}/${imagePath.replace(/\\/g, '/')}`;
   };

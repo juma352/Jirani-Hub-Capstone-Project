@@ -62,7 +62,7 @@ VITE_SOCKET_URL=https://your-render-app-name.onrender.com
 After deployment, update your backend CORS settings in `server/server.js`:
 ```javascript
 origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-vercel-app.vercel.app', 'https://your-custom-domain.com']
+    ? ['https://jirani-hub-capstone-project.vercel.app', 'https://your-custom-domain.com']
     : 'http://localhost:5173',
 ```
 
@@ -116,8 +116,8 @@ PORT=10000
 
 ### Frontend (Vercel):
 ```
-VITE_API_URL=https://your-render-app-name.onrender.com/api
-VITE_SOCKET_URL=https://your-render-app-name.onrender.com
+VITE_API_URL=https://jirani-hub-capstone-project.onrender.com/api
+VITE_SOCKET_URL=https://jirani-hub-capstone-project.onrender.com
 ```
 
 ## Monitoring and Maintenance

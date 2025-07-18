@@ -7,7 +7,7 @@ export function cn(...inputs) {
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || (
   import.meta.env.PROD 
-    ? 'https://your-render-app-name.onrender.com/api'
+    ? 'https://jirani-hub-capstone-project.onrender.com/api'
     : 'http://localhost:5000/api'
 );
 
