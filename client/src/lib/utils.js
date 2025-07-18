@@ -5,7 +5,11 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
-export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || (
+  import.meta.env.PROD 
+    ? 'https://your-render-app-name.onrender.com/api'
+    : 'http://localhost:5000/api'
+);
 
 export function formatCurrency(amount) {
   if (typeof amount !== 'number') return '';

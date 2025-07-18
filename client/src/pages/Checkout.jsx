@@ -194,7 +194,15 @@ const Checkout = () => {
                     <div className="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
                       {order.listing?.images?.[0] ? (
                         <img
-                          src={`http://localhost:5000/${order.listing.images[0].replace(/\\/g, '/')}`}
+                          src={(() => {
+                            const imagePath = order.listing.images[0]
+                            if (imagePath.startsWith('http')) return imagePath
+                            const baseURL = import.meta.env.VITE_API_URL?.replace('/api', '') || 
+                                           (import.meta.env.PROD 
+                                             ? 'https://your-render-app-name.onrender.com'
+                                             : 'http://localhost:5000')
+                            return `${baseURL}/${imagePath.replace(/\\/g, '/')}`
+                          })()}
                           alt={order.listing.title}
                           className="w-full h-full object-cover"
                           onError={(e) => {

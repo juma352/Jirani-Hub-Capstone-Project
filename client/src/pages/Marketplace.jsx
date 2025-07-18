@@ -54,7 +54,11 @@ const Marketplace = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400'
     if (imagePath.startsWith('http')) return imagePath
-    return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`
+    const baseURL = import.meta.env.VITE_API_URL?.replace('/api', '') || 
+                   (import.meta.env.PROD 
+                     ? 'https://your-render-app-name.onrender.com'
+                     : 'http://localhost:5000')
+    return `${baseURL}/${imagePath.replace(/\\/g, '/')}`
   }
 
   if (isLoading) {

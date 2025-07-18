@@ -33,7 +33,9 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // Implement CORS middleware with options
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://jirani-hub.vercel.app', 'https://your-custom-domain.com']
+        : 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -53,14 +55,20 @@ app.use('/api/chats', chatRoutes)
 
 // Define a simple route
 app.get('/', (req, res) => {
-    res.send('Welcome to JiraniHub API')
+    res.json({ 
+        message: 'Welcome to JiraniHub API',
+        status: 'Server is running',
+        environment: process.env.NODE_ENV || 'development'
+    })
 })
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://jirani-hub.vercel.app', 'https://your-custom-domain.com']
+        : 'http://localhost:5173',
     methods: ['GET', 'POST'],
     credentials: true
   }

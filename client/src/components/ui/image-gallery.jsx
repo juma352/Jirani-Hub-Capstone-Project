@@ -34,7 +34,11 @@ export const ImageGallery = ({ images = [], title = "Images" }) => {
     if (!imagePath) return ''
     // Handle both relative and absolute paths
     if (imagePath.startsWith('http')) return imagePath
-    return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`
+    const baseURL = import.meta.env.VITE_API_URL?.replace('/api', '') || 
+                   (import.meta.env.PROD 
+                     ? 'https://your-render-app-name.onrender.com'
+                     : 'http://localhost:5000')
+    return `${baseURL}/${imagePath.replace(/\\/g, '/')}`
   }
 
   return (

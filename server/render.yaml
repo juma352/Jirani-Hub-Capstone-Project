@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: jirani-hub-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        fromDatabase:
+          name: jirani-hub-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
+
+databases:
+  - name: jirani-hub-db
+    databaseName: jiranihub
+    user: jiranihub
