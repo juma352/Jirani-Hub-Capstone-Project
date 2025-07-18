@@ -1,6 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import corsMiddleware from './middleware/corsMiddleware.js'
+import cors from 'cors'
 import connectDB from './config/Db.js'
 import authRoutes from './routes/authRoutes.js'
 import listingRoutes from './routes/listingRoutes.js'
@@ -25,6 +25,42 @@ const app = express()
 
 import path from 'path';
 
+// CORS configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://jirani-hub-capstone-project.vercel.app',
+      'https://jirani-hub-frontend.vercel.app',
+      'https://jirani-hub.vercel.app',
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'http://127.0.0.1:5173',
+      'http://127.0.0.1:3000'
+    ];
+    
+    // Allow requests with no origin (mobile apps, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin is allowed or matches Vercel pattern
+    if (allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
+      callback(null, true);
+    } else {
+      console.log(`CORS blocked origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With',
+    'Accept',
+    'Origin'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // Middleware to parse JSON bodies
 app.use(express.json())
 
@@ -32,7 +68,10 @@ app.use(express.json())
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // Apply CORS middleware
-app.use(corsMiddleware)
+app.use(cors(corsOptions))
+
+// Add preflight handling for all routes
+app.options('*', cors(corsOptions));
 
 //Mount routes
 app.use('/api/auth', authRoutes)
@@ -48,6 +87,9 @@ app.use('/api/chats', chatRoutes)
 
 // Define a simple route
 app.get('/', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.json({ 
         message: 'Welcome to JiraniHub API',
         status: 'Server is running',
@@ -59,14 +101,13 @@ const PORT = process.env.PORT || 5000
 const server = http.createServer(app)
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' 
-        ? [
-            'https://jirani-hub-capstone-project.vercel.app',
-            'https://jirani-hub-frontend.vercel.app', 
-            'https://jirani-hub.vercel.app',
-            /\.vercel\.app$/
-          ]
-        : ['http://localhost:5173', 'http://localhost:3000'],
+    origin: [
+      'https://jirani-hub-capstone-project.vercel.app',
+      'https://jirani-hub-frontend.vercel.app', 
+      'https://jirani-hub.vercel.app',
+      'http://localhost:5173', 
+      'http://localhost:3000'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true
   }
