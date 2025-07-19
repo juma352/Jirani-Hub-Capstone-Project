@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © 2024 JiraniHub. All rights reserved. Built with ❤️ for stronger communities.
+              © 2025 JiraniHub. All rights reserved. Built with ❤️ for stronger communities.
             </p>
           </div>
         </div>
