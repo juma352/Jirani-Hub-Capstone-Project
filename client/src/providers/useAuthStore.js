@@ -33,6 +33,8 @@ const useAuthStore = create((set) => ({
   logout: () => {
     localStorage.removeItem('token');
     set({ user: null, token: null, loading: false });
+    // Redirect to home page after logout
+    window.location.href = '/home';
   },
 
   checkAuth: async () => {

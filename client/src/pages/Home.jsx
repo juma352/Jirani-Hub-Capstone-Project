@@ -327,6 +327,11 @@ const Home = () => {
                 <MapPin className="h-4 w-4 mr-1" />
                 {user.location}
               </p>
+              <div className="mt-4">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600" asChild>
+                  <Link to="/dashboard">Go to Dashboard</Link>
+                </Button>
+              </div>
             </div>
             <div className="hidden md:flex space-x-4">
               <Button className="bg-white/20 hover:bg-white/30 border-white/30" asChild>

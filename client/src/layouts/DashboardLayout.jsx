@@ -89,6 +89,12 @@ const DashboardLayout = () => {
         {/* Topbar */}
         <header className="flex justify-between items-center px-6 py-4 bg-white border-b">
           <div className="flex items-center space-x-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/home" className="text-gray-600 hover:text-primary">
+                <Home className="h-4 w-4 mr-2" />
+                Home
+              </Link>
+            </Button>
             <h1 className="text-lg font-semibold text-gray-900">
               {location.pathname === '/dashboard' ? 'Dashboard' : 
                location.pathname.split('/').pop().charAt(0).toUpperCase() + 
